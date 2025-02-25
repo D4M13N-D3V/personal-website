@@ -120,9 +120,9 @@ const TypingAnimation: React.FC<TypingAnimationProps> = ({
     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25))'
   };
 
-  // Red glow for exclamation mark
-  const redGlowEffects = {
-    textShadow: '0 0 10px rgba(244, 67, 54, 0.35), 0 0 20px rgba(244, 67, 54, 0.25)',
+  // Purple glow for exclamation mark
+  const purpleGlowEffects = {
+    textShadow: '0 0 10px rgba(128, 0, 255, 0.175), 0 0 20px rgba(128, 0, 255, 0.125)',
     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25))'
   };
 
@@ -205,8 +205,8 @@ const TypingAnimation: React.FC<TypingAnimationProps> = ({
         <Box
           component="span"
           sx={{
-            color: '#f44336', /* Material UI red */
-            ...redGlowEffects
+            color: '#8000ff', /* Purple */
+            ...purpleGlowEffects
           }}
         >
           {exclamationMark}

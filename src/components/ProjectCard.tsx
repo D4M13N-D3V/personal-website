@@ -223,16 +223,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               label={tech}
               size="small"
               sx={{
-                backgroundColor: 'rgba(255, 0, 0, 0.7)', // Red background
+                backgroundColor: 'rgba(128, 0, 255, 0.7)', // Purple background
                 color: textColor,
                 height: 24,
                 fontSize: '0.75rem',
-                boxShadow: '0 0 10px rgba(255, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.3)', // Red glow
-                filter: 'drop-shadow(0 2px 4px rgba(255, 0, 0, 0.4))',
+                boxShadow: '0 0 10px rgba(128, 0, 255, 0.25), 0 0 20px rgba(128, 0, 255, 0.15)', // Purple glow (half intensity)
+                filter: 'drop-shadow(0 2px 4px rgba(128, 0, 255, 0.2))',
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 0, 0, 0.8)', // Slightly darker red on hover
-                  boxShadow: '0 0 15px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4)', // Enhanced red glow
-                  filter: 'drop-shadow(0 4px 8px rgba(255, 0, 0, 0.5))',
+                  backgroundColor: 'rgba(128, 0, 255, 0.8)', // Slightly darker purple on hover
+                  boxShadow: '0 0 15px rgba(128, 0, 255, 0.3), 0 0 30px rgba(128, 0, 255, 0.2)', // Enhanced purple glow (half intensity)
+                  filter: 'drop-shadow(0 4px 8px rgba(128, 0, 255, 0.25))',
                 },
                 transition: 'all 0.3s ease-in-out',
               }}

@@ -8,18 +8,18 @@ const MasonryItem: React.FC<MasonryItemProps> = ({
   animationDelay = 0
 }) => {
   // Define colors and effects
-  const redBackground = 'rgba(244, 67, 54, 0.4)'; // Red background similar to exclamation mark
-  const titleColor = '#f44336'; // Material UI red (same as exclamation mark)
-  const titleGlow = '0 0 10px rgba(244, 67, 54, 0.35), 0 0 20px rgba(244, 67, 54, 0.25)'; // Same glow as exclamation mark
+  const purpleBackground = 'rgba(128, 0, 255, 0.4)'; // Purple background
+  const titleColor = '#8000ff'; // Purple color
+  const titleGlow = '0 0 10px rgba(128, 0, 255, 0.175), 0 0 20px rgba(128, 0, 255, 0.125)'; // Purple glow (half intensity)
   
-  // Enhanced shadow effects with red glow like the exclamation mark
+  // Enhanced shadow effects with purple glow (half intensity)
   const shadowEffects = {
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2), 0 0 10px rgba(244, 67, 54, 0.35), 0 0 20px rgba(244, 67, 54, 0.25)',
-    filter: 'drop-shadow(0 2px 4px rgba(244, 67, 54, 0.3))',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2), 0 0 10px rgba(128, 0, 255, 0.175), 0 0 20px rgba(128, 0, 255, 0.125)',
+    filter: 'drop-shadow(0 2px 4px rgba(128, 0, 255, 0.15))',
     transition: 'all 0.3s ease-in-out',
     '&:hover': {
-      boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3), 0 0 15px rgba(244, 67, 54, 0.5), 0 0 30px rgba(244, 67, 54, 0.35)',
-      filter: 'drop-shadow(0 4px 8px rgba(244, 67, 54, 0.4))',
+      boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3), 0 0 15px rgba(128, 0, 255, 0.25), 0 0 30px rgba(128, 0, 255, 0.175)',
+      filter: 'drop-shadow(0 4px 8px rgba(128, 0, 255, 0.2))',
       transform: 'translateY(-5px)'
     }
   };
@@ -33,7 +33,7 @@ const MasonryItem: React.FC<MasonryItemProps> = ({
             sx={{
               height: item.height || 'auto',
               width: '100%',
-              backgroundColor: redBackground,
+              backgroundColor: purpleBackground,
               ...shadowEffects
             }}
           >
@@ -55,7 +55,7 @@ const MasonryItem: React.FC<MasonryItemProps> = ({
             sx={{
               height: item.height || 'auto',
               width: '100%',
-              backgroundColor: redBackground,
+              backgroundColor: purpleBackground,
               ...shadowEffects
             }}
           >
@@ -81,7 +81,7 @@ const MasonryItem: React.FC<MasonryItemProps> = ({
               p: 2,
               height: item.height || 'auto',
               width: '100%',
-              backgroundColor: redBackground,
+              backgroundColor: purpleBackground,
               borderRadius: 1,
               ...shadowEffects
             }}
