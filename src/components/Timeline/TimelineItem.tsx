@@ -29,14 +29,14 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   // or top or bottom (for horizontal orientation)
   const isAlternating = index % 2 === 1;
   
-  // Enhanced glow effects for the marker - using deep dark blue with stronger glow
+  // Enhanced glow effects for the marker - using bright blue with stronger glow
   const markerGlowEffects = {
     boxShadow: isHovered
-      ? '0 0 15px rgba(10, 25, 50, 0.6), 0 0 30px rgba(10, 25, 50, 0.5)'
-      : '0 0 10px rgba(10, 25, 50, 0.5), 0 0 20px rgba(10, 25, 50, 0.4)',
+      ? '0 0 15px rgba(79, 209, 255, 0.6), 0 0 30px rgba(79, 209, 255, 0.5)'
+      : '0 0 10px rgba(79, 209, 255, 0.5), 0 0 20px rgba(79, 209, 255, 0.4)',
     filter: isHovered
-      ? 'drop-shadow(0 4px 8px rgba(10, 25, 50, 0.6))'
-      : 'drop-shadow(0 2px 4px rgba(10, 25, 50, 0.5))',
+      ? 'drop-shadow(0 4px 8px rgba(79, 209, 255, 0.6))'
+      : 'drop-shadow(0 2px 4px rgba(79, 209, 255, 0.5))',
     transition: 'all 0.3s ease-in-out',
   };
   
@@ -46,14 +46,14 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
     transition: 'all 0.3s ease-in-out',
   };
 
-  // Enhanced button hover effects - using darker blue glow
+  // Enhanced button hover effects - using bright blue glow
   const buttonHoverEffects = {
-    boxShadow: '0 0 10px rgba(10, 25, 50, 0.5), 0 0 20px rgba(10, 25, 50, 0.4)',
-    filter: 'drop-shadow(0 2px 4px rgba(10, 25, 50, 0.5))',
+    boxShadow: '0 0 10px rgba(79, 209, 255, 0.5), 0 0 20px rgba(79, 209, 255, 0.4)',
+    filter: 'drop-shadow(0 2px 4px rgba(79, 209, 255, 0.5))',
     '&:hover': {
       transform: 'translateX(5px)',
-      boxShadow: '0 0 15px rgba(10, 25, 50, 0.6), 0 0 30px rgba(10, 25, 50, 0.5)',
-      filter: 'drop-shadow(0 4px 8px rgba(10, 25, 50, 0.6))',
+      boxShadow: '0 0 15px rgba(79, 209, 255, 0.6), 0 0 30px rgba(79, 209, 255, 0.5)',
+      filter: 'drop-shadow(0 4px 8px rgba(79, 209, 255, 0.6))',
     },
     transition: 'all 0.3s ease-in-out',
   };
@@ -74,7 +74,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
           width: 60,
           height: 60,
           borderRadius: '4px', // Square with slightly rounded corners
-          backgroundColor: '#0a1932', // Deep dark blue
+          backgroundColor: 'rgba(79, 209, 255, 0.8)', // Bright blue like d4m13n.dev
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -92,7 +92,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
           sx={{
             width: 3,
             height: '100%',
-            backgroundColor: '#0a1932', // Deep dark blue
+            backgroundColor: '#4fd1ff', // Bright blue like d4m13n.dev
             opacity: 0.5,
             mt: 1,
             mb: 1,
@@ -103,7 +103,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
           sx={{
             height: 3,
             width: '100%',
-            backgroundColor: '#0a1932', // Deep dark blue
+            backgroundColor: '#4fd1ff', // Bright blue like d4m13n.dev
             opacity: 0.5,
             ml: 1,
             mr: 1,
@@ -153,12 +153,12 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
               endIcon={<ArrowForwardIcon />}
               href={item.actionUrl}
               sx={{
-                backgroundColor: '#0a1932', // Deep dark blue
+                backgroundColor: 'rgba(79, 209, 255, 0.8)', // Bright blue like d4m13n.dev
                 color: 'white', // White text
                 ...buttonHoverEffects,
                 '&:hover': {
                   ...buttonHoverEffects['&:hover'],
-                  backgroundColor: '#152a45', // Slightly lighter on hover
+                  backgroundColor: 'rgba(79, 209, 255, 0.9)', // Slightly brighter on hover
                 }
               }}
             >
