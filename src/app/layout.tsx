@@ -17,7 +17,7 @@ import UsersIcon from '@mui/icons-material/People'
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
 
 export const metadata = {
-  title: 'Next.js MUI Starter Template',
+  title: 'd4m13n.dev',
   description: 'Next.js App Router + Material UI v5 Starter Template'
 }
 

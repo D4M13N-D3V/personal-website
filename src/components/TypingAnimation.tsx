@@ -116,7 +116,7 @@ const TypingAnimation: React.FC<TypingAnimationProps> = ({
 
   // Blue glow for "Damien"
   const blueGlowEffects = {
-    textShadow: '0 0 10px rgba(25, 118, 210, 0.35), 0 0 20px rgba(25, 118, 210, 0.25)',
+    textShadow: '0 0 10px rgba(79, 209, 255, 0.15), 0 0 20px rgba(79, 209, 255, 0.1)',
     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25))'
   };
 
@@ -132,7 +132,7 @@ const TypingAnimation: React.FC<TypingAnimationProps> = ({
     const fullTitleText = titleText;
     
     // Find where "Damien" starts in the full text
-    const damienStartIndex = fullTitleText.toLowerCase().indexOf('damien');
+    const damienStartIndex = fullTitleText.toLowerCase().indexOf('d4m13n');
     
     // If "Damien" isn't in the text (shouldn't happen, but just in case)
     if (damienStartIndex === -1) {
@@ -159,7 +159,7 @@ const TypingAnimation: React.FC<TypingAnimationProps> = ({
             key={i}
             component="span"
             sx={{
-              color: '#1976d2', /* Material UI primary blue */
+              color: '#4fd1ff', /* Same blue as active tab */
               ...blueGlowEffects
             }}
           >
