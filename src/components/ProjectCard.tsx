@@ -223,13 +223,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               label={tech}
               size="small"
               sx={{
-                backgroundColor: 'rgba(255,255,255,0.1)',
+                backgroundColor: 'rgba(255, 0, 0, 0.7)', // Red background
                 color: textColor,
                 height: 24,
                 fontSize: '0.75rem',
+                boxShadow: '0 0 10px rgba(255, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.3)', // Red glow
+                filter: 'drop-shadow(0 2px 4px rgba(255, 0, 0, 0.4))',
                 '&:hover': {
-                  backgroundColor: 'rgba(255,255,255,0.2)',
-                  boxShadow: ambientGlow,
+                  backgroundColor: 'rgba(255, 0, 0, 0.8)', // Slightly darker red on hover
+                  boxShadow: '0 0 15px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4)', // Enhanced red glow
+                  filter: 'drop-shadow(0 4px 8px rgba(255, 0, 0, 0.5))',
                 },
                 transition: 'all 0.3s ease-in-out',
               }}
@@ -265,10 +268,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     borderRadius: '6px',
                     padding: '4px 12px',
                     minWidth: '80px',
+                    boxShadow: '0 0 5px rgba(10, 25, 50, 0.3), 0 0 10px rgba(10, 25, 50, 0.2)',
                     '&:hover': {
-                      borderColor: textColor,
-                      backgroundColor: 'rgba(255,255,255,0.05)',
-                      boxShadow: ambientGlow,
+                      borderColor: '#4fd1ff',
+                      backgroundColor: 'rgba(79, 209, 255, 0.1)',
+                      boxShadow: '0 0 10px rgba(10, 25, 50, 0.5), 0 0 20px rgba(10, 25, 50, 0.4)',
+                      filter: 'drop-shadow(0 2px 4px rgba(10, 25, 50, 0.5))',
                     },
                     transition: 'all 0.3s ease-in-out',
                   }}
@@ -294,9 +299,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 borderRadius: '6px',
                 padding: '4px 12px',
                 minWidth: '80px',
+                boxShadow: '0 0 10px rgba(10, 25, 50, 0.5), 0 0 20px rgba(10, 25, 50, 0.4)',
+                filter: 'drop-shadow(0 2px 4px rgba(10, 25, 50, 0.5))',
                 '&:hover': {
-                  backgroundColor: 'rgba(79, 209, 255, 0.4)',
-                  boxShadow: enhancedGlow,
+                  backgroundColor: 'rgba(79, 209, 255, 0.5)',
+                  boxShadow: '0 0 15px rgba(10, 25, 50, 0.6), 0 0 30px rgba(10, 25, 50, 0.5)',
+                  filter: 'drop-shadow(0 4px 8px rgba(10, 25, 50, 0.6))',
                 },
                 transition: 'all 0.3s ease-in-out',
               }}

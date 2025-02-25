@@ -10,7 +10,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TypingAnimation from '@/components/TypingAnimation';
 import ProjectMasonry from '@/components/ProjectMasonry';
+import SocialIcons from '@/components/SocialIcons';
+import Timeline from '@/components/Timeline/Timeline';
 import projects from '@/data/projects';
+import timelineData from '@/data/timeline';
 
 export default function HomePage() {
   const [showContent, setShowContent] = useState(false);
@@ -31,6 +34,9 @@ export default function HomePage() {
           onComplete={() => setShowContent(true)}
         />
       )}
+      
+      {/* Social Icons */}
+      {showContent && <SocialIcons />}
       
       <Fade in={showContent} timeout={1000} style={{ transitionDelay: showContent ? '500ms' : '0ms' }}>
         <Box sx={{
@@ -61,7 +67,15 @@ export default function HomePage() {
             >
               d4m13n
             </Box>
-            <Box component="span">.dev</Box>
+            <Box
+              component="span"
+              sx={{
+                textShadow: '0 0 10px rgba(255, 255, 255, 0.25), 0 0 20px rgba(255, 255, 255, 0.15)',
+                filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25))'
+              }}
+            >
+              .dev
+            </Box>
           </Typography>
           
           <Box sx={{ width: '100%', mb: 4 }}>
@@ -88,8 +102,25 @@ export default function HomePage() {
                 }
               }}
             >
-              <Tab label="Software Dev Projects" />
-              <Tab label="Game Dev Projects" />
+              <Tab label={
+                <Box sx={{
+                  display: 'flex',
+                  flexDirection: 'row'
+                }}>
+                  <Box sx={{ display: { xs: 'block', sm: 'none' } }}>Software</Box>
+                  <Box sx={{ display: { xs: 'none', sm: 'block' } }}>Software Dev Projects</Box>
+                </Box>
+              } />
+              <Tab label={
+                <Box sx={{
+                  display: 'flex',
+                  flexDirection: 'row'
+                }}>
+                  <Box sx={{ display: { xs: 'block', sm: 'none' } }}>Game Dev</Box>
+                  <Box sx={{ display: { xs: 'none', sm: 'block' } }}>Game Dev Projects</Box>
+                </Box>
+              } />
+              <Tab label="Resume" />
               <Tab label="About" />
               <Tab label="Contact" />
             </Tabs>
@@ -106,7 +137,14 @@ export default function HomePage() {
               <ProjectMasonry projects={projects} />
             </Box>
           )}
+          
           {activeTab === 2 && (
+            <Box sx={{ width: '100%', maxWidth: 1200, mx: 'auto', p: 2 }}>
+              <Timeline items={timelineData} orientation="vertical" />
+            </Box>
+          )}
+          
+          {activeTab === 3 && (
             <Box sx={{ width: '100%', maxWidth: 800, mx: 'auto', p: 2 }}>
               <Typography variant="h5" component="h2" gutterBottom sx={{ mb: 2 }}>
                 About Me
@@ -122,7 +160,7 @@ export default function HomePage() {
             </Box>
           )}
           
-          {activeTab === 3 && (
+          {activeTab === 4 && (
             <Box sx={{ width: '100%', maxWidth: 800, mx: 'auto', p: 2 }}>
               <Typography variant="h5" component="h2" gutterBottom sx={{ mb: 2 }}>
                 Contact
