@@ -27,7 +27,7 @@ export default function HomePage() {
     <>
       {!showContent && (
         <TypingAnimation
-          titleText="My name is D4m13n."
+          titleText="My name is d4m13n."
           subtitleText="Welcome to my website!"
           typingSpeed={80}
           delayBeforeRemoval={3000}
@@ -120,12 +120,12 @@ export default function HomePage() {
                   <Box sx={{ display: { xs: 'none', sm: 'block' } }}>Game Dev Projects</Box>
                 </Box>
               } />
-              <Tab label="Resume" />
-              <Tab
-                label="Contact"
+              <Tab label="Resume"
                 sx={{
                   display: { xs: 'none', sm: 'flex' }
-                }}
+                }} />
+              <Tab
+                label="Contact"
               />
             </Tabs>
           </Box>
