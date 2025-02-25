@@ -8,18 +8,18 @@ const MasonryItem: React.FC<MasonryItemProps> = ({
   animationDelay = 0
 }) => {
   // Define colors and effects
-  const purpleBackground = 'rgba(128, 0, 255, 0.4)'; // Purple background
-  const titleColor = '#8000ff'; // Purple color
-  const titleGlow = '0 0 10px rgba(128, 0, 255, 0.175), 0 0 20px rgba(128, 0, 255, 0.125)'; // Purple glow (half intensity)
+  const blueBackground = 'rgba(79, 209, 255, 0.4)'; // Blue background
+  const titleColor = '#4fd1ff'; // Blue color
+  const titleGlow = '0 0 10px rgba(79, 209, 255, 0.5), 0 0 20px rgba(79, 209, 255, 0.3)'; // Blue glow
   
-  // Enhanced shadow effects with purple glow (half intensity)
+  // Enhanced shadow effects with blue glow
   const shadowEffects = {
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2), 0 0 10px rgba(128, 0, 255, 0.175), 0 0 20px rgba(128, 0, 255, 0.125)',
-    filter: 'drop-shadow(0 2px 4px rgba(128, 0, 255, 0.15))',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2), 0 0 10px rgba(79, 209, 255, 0.5), 0 0 20px rgba(79, 209, 255, 0.3)',
+    filter: 'drop-shadow(0 2px 4px rgba(79, 209, 255, 0.4))',
     transition: 'all 0.3s ease-in-out',
     '&:hover': {
-      boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3), 0 0 15px rgba(128, 0, 255, 0.25), 0 0 30px rgba(128, 0, 255, 0.175)',
-      filter: 'drop-shadow(0 4px 8px rgba(128, 0, 255, 0.2))',
+      boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3), 0 0 15px rgba(79, 209, 255, 0.6), 0 0 30px rgba(79, 209, 255, 0.4)',
+      filter: 'drop-shadow(0 4px 8px rgba(79, 209, 255, 0.5))',
       transform: 'translateY(-5px)'
     }
   };
@@ -33,7 +33,7 @@ const MasonryItem: React.FC<MasonryItemProps> = ({
             sx={{
               height: item.height || 'auto',
               width: '100%',
-              backgroundColor: purpleBackground,
+              backgroundColor: blueBackground,
               ...shadowEffects
             }}
           >
@@ -55,7 +55,7 @@ const MasonryItem: React.FC<MasonryItemProps> = ({
             sx={{
               height: item.height || 'auto',
               width: '100%',
-              backgroundColor: purpleBackground,
+              backgroundColor: blueBackground,
               ...shadowEffects
             }}
           >
@@ -81,7 +81,7 @@ const MasonryItem: React.FC<MasonryItemProps> = ({
               p: 2,
               height: item.height || 'auto',
               width: '100%',
-              backgroundColor: purpleBackground,
+              backgroundColor: blueBackground,
               borderRadius: 1,
               ...shadowEffects
             }}

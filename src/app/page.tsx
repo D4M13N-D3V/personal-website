@@ -121,8 +121,12 @@ export default function HomePage() {
                 </Box>
               } />
               <Tab label="Resume" />
-              <Tab label="About" />
-              <Tab label="Contact" />
+              <Tab
+                label="Contact"
+                sx={{
+                  display: { xs: 'none', sm: 'flex' }
+                }}
+              />
             </Tabs>
           </Box>
           
@@ -160,7 +164,7 @@ export default function HomePage() {
             </Box>
           )}
           
-          {activeTab === 4 && (
+          {activeTab === 3 && (
             <Box sx={{ width: '100%', maxWidth: 800, mx: 'auto', p: 2 }}>
               <Typography variant="h5" component="h2" gutterBottom sx={{ mb: 2 }}>
                 Contact

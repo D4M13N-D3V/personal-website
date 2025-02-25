@@ -147,14 +147,17 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
         />
         
         {item.actionUrl && (
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2, width: '100%' }}>
             <Button
               variant="contained"
               endIcon={<ArrowForwardIcon />}
               href={item.actionUrl}
+              fullWidth
               sx={{
                 backgroundColor: 'rgba(79, 209, 255, 0.8)', // Bright blue like d4m13n.dev
                 color: 'white', // White text
+                textAlign: 'center',
+                justifyContent: 'center',
                 ...buttonHoverEffects,
                 '&:hover': {
                   ...buttonHoverEffects['&:hover'],

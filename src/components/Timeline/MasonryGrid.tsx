@@ -39,58 +39,24 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({
     }
   }, [isVisible, items.length, animationDelay]);
 
-  // Determine column count based on screen size
-  const getColumnCount = () => {
-    if (isMobile) return 1;
-    if (isTablet) return 2;
-    return 3;
-  };
-
-  // Distribute items into columns for masonry layout
-  const getColumns = () => {
-    const columnCount = getColumnCount();
-    const columns: React.ReactNode[][] = Array.from({ length: columnCount }, () => []);
-    
-    items.forEach((item, index) => {
-      const columnIndex = index % columnCount;
-      columns[columnIndex].push(
-        <MasonryItem 
-          key={item.id} 
-          item={item} 
-          isVisible={visibleItems[index]}
-          animationDelay={0} // Already handled by parent staggering
-        />
-      );
-    });
-    
-    return columns;
-  };
-
-  const columns = getColumns();
-  const columnCount = getColumnCount();
+  // Filter to only show image items
+  const imageItems = items.filter(item => item.type === 'image');
 
   return (
-    <Box 
+    <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 2,
         width: '100%',
         mt: 2,
         mb: 2
       }}
     >
-      {columns.map((column, index) => (
-        <Box 
-          key={`column-${index}`}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: `calc(${100 / columnCount}% - ${(columnCount - 1) * 8 / columnCount}px)`,
-          }}
-        >
-          {column}
-        </Box>
+      {imageItems.map((item, index) => (
+        <MasonryItem
+          key={item.id}
+          item={item}
+          isVisible={visibleItems[index]}
+          animationDelay={0} // Already handled by parent staggering
+        />
       ))}
     </Box>
   );
