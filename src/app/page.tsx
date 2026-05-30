@@ -157,11 +157,11 @@ export default function HomePage() {
                 About Me
               </Typography>
               <Typography variant="body1" paragraph>
-                I'm a passionate developer with expertise in modern web technologies.
+                I&apos;m a passionate developer with expertise in modern web technologies.
                 I love creating responsive, user-friendly applications that solve real-world problems.
               </Typography>
               <Typography variant="body1" paragraph>
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
+                When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source projects,
                 or enjoying outdoor activities.
               </Typography>
 
