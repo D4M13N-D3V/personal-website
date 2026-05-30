@@ -15,6 +15,9 @@ import Timeline from '@/components/Timeline/Timeline';
 import projects from '@/data/projects';
 import timelineData from '@/data/timeline';
 
+const softwareProjects = projects.filter((p) => p.category === 'software');
+const gameProjects = projects.filter((p) => p.category === 'game');
+
 export default function HomePage() {
   const [showContent, setShowContent] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
@@ -132,13 +135,13 @@ export default function HomePage() {
           
           {activeTab === 0 && (
             <Box sx={{ width: '100%', maxWidth: 1200, mx: 'auto' }}>
-              <ProjectMasonry projects={projects} />
+              <ProjectMasonry projects={softwareProjects} />
             </Box>
           )}
-          
+
           {activeTab === 1 && (
             <Box sx={{ width: '100%', maxWidth: 1200, mx: 'auto', p: 2 }}>
-              <ProjectMasonry projects={projects} />
+              <ProjectMasonry projects={gameProjects} />
             </Box>
           )}
           
@@ -157,16 +160,12 @@ export default function HomePage() {
                 I'm a passionate developer with expertise in modern web technologies.
                 I love creating responsive, user-friendly applications that solve real-world problems.
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" paragraph>
                 When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
                 or enjoying outdoor activities.
               </Typography>
-            </Box>
-          )}
-          
-          {activeTab === 3 && (
-            <Box sx={{ width: '100%', maxWidth: 800, mx: 'auto', p: 2 }}>
-              <Typography variant="h5" component="h2" gutterBottom sx={{ mb: 2 }}>
+
+              <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 4, mb: 2 }}>
                 Contact
               </Typography>
               <Typography variant="body1" paragraph>

@@ -29,11 +29,15 @@ interface Repository {
   url: string;
 }
 
+// Project category — drives which tab a project appears under
+export type ProjectCategory = 'software' | 'game';
+
 // Define the project interface
 export interface Project {
   id: string;
   title: string;
   description: string;
+  category: ProjectCategory;
   technologies: string[];
   images: ProjectImage[];
   repositories?: Repository[]; // Multiple repositories with names
