@@ -8,3 +8,7 @@ temp/
 .env
 .env.local
 !.vscode
+
+# test & build artifacts
+/coverage
+*.tsbuildinfo
