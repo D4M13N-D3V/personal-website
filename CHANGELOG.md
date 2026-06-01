@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/D4M13N-D3V/personal-website/compare/v1.0.0...v1.0.1) (2026-06-01)
+
+
+### Bug Fixes
+
+* **security:** clear image HIGH CVEs (upgrade Next 14→15, drop npm from runtime) ([1907ffa](https://github.com/D4M13N-D3V/personal-website/commit/1907ffab668d076def8920123b4612258422785f))
+
 # 1.0.0 (2026-05-31)
 
 
