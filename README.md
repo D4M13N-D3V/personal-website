@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# d4m13n.dev
 
-## Getting Started
+Personal website and project portfolio for **d4m13n** ([d4m13n.dev](https://d4m13n.dev)) — a single-page Next.js app that opens with a typing-animation intro and presents work across tabbed sections.
 
-First, run the development server:
+## Features
+
+- **Animated intro** — a typed greeting plays on load, then fades into the main content.
+- **Tabbed portfolio** — Software Dev Projects, Game Dev Projects, a Resume timeline, and Contact.
+- **Project masonry** — each project renders as a card with description, tech stack, screenshots, repo links, and a live demo link.
+- **Vertical timeline** — career/project milestones with masonry-style detail items.
+- **Social links** and a dark, cyan-accented (`#4fd1ff`) theme.
+- Responsive layout, with condensed labels on small screens.
+
+> **Note:** The project and timeline content in `src/data/` is currently placeholder data (Unsplash images, example URLs) pending real content.
+
+## Tech stack
+
+- [Next.js 15](https://nextjs.org/) (App Router) + React 18 + TypeScript
+- [MUI v6](https://mui.com/) with [Emotion](https://emotion.sh/) for styling, Roboto via `next/font`
+- [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/) for tests
+- ESLint (`eslint-config-next`) + Prettier
+- Docker (standalone output) for production images, published to GHCR
+
+## Getting started
+
+Requires Node.js 20.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| Script              | Description                    |
+| ------------------- | ------------------------------ |
+| `npm run dev`       | Start the dev server           |
+| `npm run build`     | Production build               |
+| `npm start`         | Serve the production build     |
+| `npm run lint`      | Run `next lint` and Prettier   |
+| `npm run lint:fix`  | Auto-fix lint and formatting   |
+| `npm run typecheck` | Type-check with `tsc --noEmit` |
+| `npm test`          | Run the Jest test suite        |
+| `npm run test:ci`   | Run tests in CI mode           |
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                  # App Router entry (layout, page, favicon)
+├── components/
+│   ├── ThemeRegistry/    # MUI + Emotion SSR setup and dark theme
+│   ├── Timeline/         # Resume timeline and masonry grid
+│   ├── ProjectCard.tsx   # Project card + Project type
+│   ├── ProjectMasonry.tsx
+│   ├── SocialIcons.tsx
+│   └── TypingAnimation.tsx
+└── data/
+    ├── projects.ts       # Software & game project entries
+    └── timeline.ts       # Timeline milestones
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Docker
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The app builds to a minimal standalone server image: a multi-stage build on `node:20-alpine` that emits Next.js standalone output, runs as a non-root user, and ships a container healthcheck. The npm CLI is stripped from the runtime layer — the container only runs `node server.js` — which keeps the image small and free of npm's bundled-dependency CVEs.
 
-## Deploy on Vercel
+```bash
+docker build -t personal-website .
+docker run -p 3000:3000 personal-website
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Released images are published to `ghcr.io/d4m13n-d3v/personal-website`, tagged with the semantic version (e.g. `1.0.1`), `major.minor`, `latest`, and the short commit SHA. Each release is gated on a Trivy scan, so published images carry no known fixable HIGH/CRITICAL vulnerabilities.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+docker pull ghcr.io/d4m13n-d3v/personal-website:latest
+```
+
+Copy `.env.example` to `.env.local` to configure environment variables.
+
+## CI/CD
+
+GitHub Actions workflows:
+
+- **CI** (`ci.yml`) — lint, typecheck, test, build, a Docker build, and a Trivy filesystem scan on every push and PR.
+- **Release** (`release.yml`) — [semantic-release](https://semantic-release.gitbook.io/) cuts versions and the changelog from Conventional Commits on `main`, then builds, Trivy-scans (gating on HIGH/CRITICAL), and pushes the image to GHCR.
+- **CodeQL** and **Gitleaks** — security and secret scanning.
+
+Dependabot keeps npm, GitHub Actions, and Docker dependencies updated weekly. Commits follow [Conventional Commits](https://www.conventionalcommits.org/) so releases are automated.
