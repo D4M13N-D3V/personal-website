@@ -25,6 +25,11 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
+# The runtime only runs `node server.js` and never needs npm. Remove the
+# bundled npm CLI so its vendored deps (tar, glob, minimatch, cross-spawn)
+# don't surface as CVEs in the image scan, and to shrink the image.
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
+
 # Run as an unprivileged user
 RUN addgroup --system --gid 1001 nodejs \
   && adduser --system --uid 1001 nextjs
