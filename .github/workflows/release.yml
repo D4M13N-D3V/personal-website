@@ -3,6 +3,12 @@ name: Release
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to build & publish (e.g. 1.0.0). Defaults to the latest GitHub release."
+        required: false
+        type: string
 
 # Avoid overlapping releases; never cancel one mid-publish.
 concurrency:
@@ -15,6 +21,9 @@ permissions:
 jobs:
   release:
     name: Semantic release
+    # Only run semantic-release on pushes to main; workflow_dispatch is for
+    # (re)publishing an already-released version's image.
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: write # create tags, releases, and push the changelog commit
@@ -50,15 +59,34 @@ jobs:
   publish-image:
     name: Build, scan & publish image
     needs: release
-    if: needs.release.outputs.new_release_published == 'true'
+    # Run when a new version was just released, OR on a manual dispatch
+    # (always() lets this evaluate even though `release` is skipped on dispatch).
+    if: >-
+      always() &&
+      (needs.release.outputs.new_release_published == 'true' ||
+       github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write # push to GHCR
-    env:
-      VERSION: ${{ needs.release.outputs.new_release_version }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Resolve version and lowercase image name
+        id: vars
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          version="${{ github.event.inputs.version || needs.release.outputs.new_release_version }}"
+          if [ -z "$version" ]; then
+            version="$(gh release view --json tagName --jq '.tagName')"
+          fi
+          version="${version#v}" # strip any leading v
+          # GHCR repository names must be lowercase
+          image="ghcr.io/$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "image=$image" >> "$GITHUB_OUTPUT"
+          echo "Publishing $image at v$version"
 
       - uses: docker/setup-buildx-action@v3
 
@@ -73,10 +101,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ${{ steps.vars.outputs.image }}
           tags: |
-            type=semver,pattern={{version}},value=v${{ env.VERSION }}
-            type=semver,pattern={{major}}.{{minor}},value=v${{ env.VERSION }}
+            type=semver,pattern={{version}},value=v${{ steps.vars.outputs.version }}
+            type=semver,pattern={{major}}.{{minor}},value=v${{ steps.vars.outputs.version }}
             type=raw,value=latest
             type=sha,format=short
 
@@ -85,14 +113,14 @@ jobs:
         with:
           context: .
           load: true
-          tags: ghcr.io/${{ github.repository }}:scan
+          tags: ${{ steps.vars.outputs.image }}:scan
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Trivy image scan (gate)
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
-          image-ref: ghcr.io/${{ github.repository }}:scan
+          image-ref: ${{ steps.vars.outputs.image }}:scan
           format: table
           severity: HIGH,CRITICAL
           ignore-unfixed: true
